@@ -1,13 +1,13 @@
 Pirates! is the game by **Sid Meier** I loved to play a lot.
 It is colourful and entertaining and is really good for 2004.
-Interestingly that main executable on Steam is protected with **PECompact**.
+Interestingly that main executable on Steam is packed with **PECompact**.
 So this is the small overview.
 
-**Sid Meierís Pirates (2004) on Steam**
+**Sid Meier‚Äôs Pirates (2004) on Steam**
 
 ![](Images/image1.png)
 
-The game is packed with PECompact 2. You can see the first section ì.textî has a PEC2signature at the PointerToRelocations†field.
+The game is packed with PECompact 2. You can see the first section ‚Äú.text‚Äù has a PEC2signature at the PointerToRelocations¬†field.
 
 ![](Images/image6.png)
 
@@ -21,9 +21,9 @@ The code looks like this
 
 See, there is structure before the code block, describing some values. We are interested in Buffer,BufferSize, BufferEntryOfsand LdrUnpackFn. This unpack function will APLib-decompress buffer to allocated memory. Unpacked buffer will process the image and return the real entry point.
 
-Letís see whatís inside of the unpacked buffer. The size is 0x1CC8 bytes.
+Let‚Äôs see what‚Äôs inside of the unpacked buffer. The size is 0x1CC8 bytes.
 
-Code will be executed at BufferEntryOfs†offset of the decompressed buffer.
+Code will be executed at BufferEntryOfs¬†offset of the decompressed buffer.
 
 It will recover 7 bytes at start (if needed), unpack and process memory regions (copy, decrypt, update JMP, CALL opcodes).
 
